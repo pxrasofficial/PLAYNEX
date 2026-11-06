@@ -1,77 +1,351 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLAYNEX — Play More. Level Up.</title>
 <style>
-:root{--bg:#070909;--panel:#111716;--line:#26312b;--lime:#b7ff00;--muted:#aab4ad;--white:#f5f8f5}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 0%,#172414 0,transparent 35%),var(--bg);color:var(--white);font:15px Arial,sans-serif}
-header{position:sticky;top:0;background:#080c0bea;border-bottom:1px solid var(--line);padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;z-index:2}
-.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo span{color:var(--lime)}.tag{font-size:10px;color:var(--muted);letter-spacing:2px}
-nav{display:flex;gap:18px;flex-wrap:wrap}nav a{color:#e8eee9;text-decoration:none;font-size:13px}nav a:hover{color:var(--lime)}
-button{border:0;border-radius:8px;padding:11px 16px;font-weight:800;cursor:pointer;background:var(--lime);color:#101500}
-main{max-width:1150px;margin:auto;padding:25px 4% 50px}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center;padding:45px 0}
-h1{font-size:clamp(38px,7vw,66px);line-height:.98;margin:0 0 18px}h1 span{color:var(--lime)}
-p{color:var(--muted);line-height:1.6}.hero-art{min-height:220px;border:1px solid #384c24;border-radius:20px;background:linear-gradient(135deg,#182411,#080d0b);display:grid;place-items:center;font-size:100px;box-shadow:0 0 45px #aaff0018}
-.stats,.features,.games{display:grid;gap:12px}.stats{grid-template-columns:repeat(3,1fr);margin:8px 0 30px}.stat,.feature,.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:17px}
-.stat strong{display:block;color:var(--lime);font-size:25px}.stat small{color:var(--muted)}
-h2{margin:30px 0 14px}.features{grid-template-columns:repeat(3,1fr)}.feature b{color:var(--lime)}
-.games{grid-template-columns:repeat(3,1fr)}.card{padding:0;overflow:hidden}.thumb{height:105px;display:grid;place-items:center;font-size:48px;background:linear-gradient(135deg,#253d1b,#18202a)}.cardbody{padding:14px}.card h3{margin:0 0 6px}.card p{font-size:13px;margin:0 0 12px}.card button{width:100%}
-.notice{border:1px solid #516d1c;background:#141d0d;border-radius:12px;padding:14px;color:#dce9c9;margin-top:25px;font-size:13px}
-footer{border-top:1px solid var(--line);padding:22px 5%;text-align:center;color:var(--muted);font-size:12px}
-#quiz{display:none;margin-top:15px;background:#0d1410;border:1px solid #526c1d;border-radius:12px;padding:18px}
-#quiz button{margin:6px 6px 0 0}
-@media(max-width:700px){header{align-items:flex-start;flex-direction:column}nav{gap:12px}.hero{grid-template-columns:1fr;padding:28px 0}.hero-art{min-height:150px;font-size:70px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:12px 8px}.stat strong{font-size:20px}.features,.games{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:420px){.features,.games{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr 1fr}}
+:root{
+  --bg:#070909;
+  --panel:#111816;
+  --line:#29352d;
+  --lime:#b7ff00;
+  --white:#f5f8f5;
+  --muted:#aab4ad;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--white);
+  font-family:Arial,sans-serif;
+}
+header{
+  padding:17px 5%;background:#0a100d;
+  border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:12px;
+}
+.logo{font-size:25px;font-weight:900}
+.logo span{color:var(--lime)}
+.tag{font-size:10px;color:var(--muted);letter-spacing:2px}
+main{max-width:1100px;margin:auto;padding:25px 4% 50px}
+.hero{
+  padding:40px 0;display:grid;
+  grid-template-columns:1fr 1fr;gap:20px;align-items:center;
+}
+h1{font-size:clamp(38px,7vw,65px);margin:0}
+h1 span{color:var(--lime)}
+p{color:var(--muted);line-height:1.6}
+.art{
+  background:linear-gradient(135deg,#253d1b,#101a14);
+  border:1px solid #425b29;border-radius:18px;
+  min-height:190px;display:grid;place-items:center;
+  font-size:85px;
+}
+button,select{
+  background:var(--lime);color:#101500;
+  border:0;border-radius:8px;padding:12px 16px;
+  font-weight:bold;cursor:pointer;margin:4px;
+}
+button:hover{filter:brightness(1.1)}
+.stats,.games{display:grid;gap:12px}
+.stats{grid-template-columns:repeat(3,1fr);margin:15px 0 30px}
+.stat,.card,.gamebox{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:13px;padding:16px;
+}
+.stat strong{display:block;color:var(--lime);font-size:25px}
+.games{grid-template-columns:repeat(3,1fr)}
+.card{text-align:center}
+.icon{font-size:43px}
+.card h3{margin:8px 0}
+.card p{font-size:13px}
+.card button{width:100%}
+.gamebox{display:none;margin-top:25px;padding:20px}
+.gamebox h2{color:var(--lime)}
+#question{font-size:19px;color:white;font-weight:bold}
+#options{display:flex;flex-wrap:wrap;gap:5px}
+#options button{min-width:90px}
+#feedback{min-height:28px;font-weight:bold}
+.notice{
+  background:#141d0d;border:1px solid #526d24;
+  border-radius:12px;padding:15px;margin-top:25px;
+  font-size:13px;color:#dce9c9;
+}
+footer{
+  text-align:center;border-top:1px solid var(--line);
+  padding:22px;color:var(--muted);font-size:13px;
+}
+@media(max-width:650px){
+ .hero{grid-template-columns:1fr}
+ .games{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:420px){
+ .games{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+
 <header>
- <div><div class="logo">🎮 PLAY<span>NEX</span></div><div class="tag">PLAY MORE. LEVEL UP. &nbsp; | &nbsp; FOUNDED BY PARAS NEPTA</div></div>
- <nav><a href="#home">Home</a><a href="#games">Games</a><a href="#challenges">Challenges</a><a href="#rewards">Rewards</a></nav>
+ <div>
+  <div class="logo">🎮 PLAY<span>NEX</span></div>
+  <div class="tag">PLAY MORE. LEVEL UP.</div>
+ </div>
+ <div>🏆 <strong id="points">0</strong> Points</div>
 </header>
-<main id="home">
- <section class="hero">
-  <div><h1>PLAY GAMES.<br><span>EARN POINTS.</span></h1><p>Play fun mini-games, complete daily challenges and collect points. This demo uses non-cash points only.</p><button onclick="document.querySelector('#games').scrollIntoView({behavior:'smooth'})">PLAY NOW →</button></div>
-  <div class="hero-art">🎮</div>
- </section>
- <section class="stats">
-  <div class="stat"><strong id="points">0</strong><small>Your points</small></div>
-  <div class="stat"><strong>03</strong><small>Demo games</small></div>
-  <div class="stat"><strong>01</strong><small>Daily challenge</small></div>
- </section>
- <h2>Why PLAYNEX?</h2>
- <section class="features">
-  <div class="feature">🎯 <b>Play games</b><p>Quick, casual games.</p></div>
-  <div class="feature">🏅 <b>Collect points</b><p>Earn demo points by playing.</p></div>
-  <div class="feature">📅 <b>Daily tasks</b><p>Try a new challenge.</p></div>
- </section>
- <h2 id="games">Popular games</h2>
- <section class="games">
-  <article class="card"><div class="thumb">🧠</div><div class="cardbody"><h3>Quiz Arena</h3><p>Answer a quick question.</p><button onclick="startQuiz()">PLAY</button></div></article>
-  <article class="card"><div class="thumb">🧩</div><div class="cardbody"><h3>Memory Match</h3><p>Coming soon to the demo.</p><button onclick="alert('Memory Match is coming soon!')">COMING SOON</button></div></article>
-  <article class="card"><div class="thumb">🏹</div><div class="cardbody"><h3>Target Master</h3><p>Coming soon to the demo.</p><button onclick="alert('Target Master is coming soon!')">COMING SOON</button></div></article>
- </section>
- <section id="quiz">
-  <h2 style="margin-top:0">Quiz Arena</h2><p id="question">Which planet is known as the Red Planet?</p>
-  <button onclick="answer(false)">Venus</button><button onclick="answer(true)">Mars</button><button onclick="answer(false)">Jupiter</button>
-  <p id="feedback" aria-live="polite"></p>
- </section>
- <h2 id="challenges">Daily challenge</h2>
- <div class="feature">Complete one quiz today to collect <b>+10 demo points</b>.</div>
- <h2 id="rewards">Rewards</h2>
- <div class="feature"><b>Points wallet</b><p>Your points are for in-platform progress in this prototype. They have no cash value and cannot be deposited, withdrawn or exchanged for money.</p></div>
- <div class="notice">Prototype notice: PLAYNEX is a demo gaming website. It does not accept deposits, wagers or cash withdrawals. Add real accounts, security and any commercial features only after legal and technical review.</div>
+
+<main>
+<section class="hero">
+ <div>
+  <h1>PLAY GAMES.<br><span>LEVEL UP.</span></h1>
+  <p>Play mini-games, complete challenges and collect points. Choose your game and test your skills!</p>
+  <button onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">PLAY NOW →</button>
+ </div>
+ <div class="art">🎮</div>
+</section>
+
+<section class="stats">
+ <div class="stat"><strong id="total">0</strong><small>Your points</small></div>
+ <div class="stat"><strong>06</strong><small>Playable games</small></div>
+ <div class="stat"><strong>02</strong><small>Difficulty levels</small></div>
+</section>
+
+<h2 id="games">🎯 Choose Your Game</h2>
+<section class="games">
+ <div class="card">
+  <div class="icon">🧠</div><h3>Quiz Arena</h3>
+  <p>Test your knowledge.</p>
+  <button onclick="startGame('quiz')">PLAY</button>
+ </div>
+ <div class="card">
+  <div class="icon">🧩</div><h3>Memory Match</h3>
+  <p>Remember the numbers.</p>
+  <button onclick="startGame('memory')">PLAY</button>
+ </div>
+ <div class="card">
+  <div class="icon">🔢</div><h3>Number Ninja</h3>
+  <p>Find the missing number.</p>
+  <button onclick="startGame('number')">PLAY</button>
+ </div>
+ <div class="card">
+  <div class="icon">🔤</div><h3>Word Scramble</h3>
+  <p>Unscramble the word.</p>
+  <button onclick="startGame('word')">PLAY</button>
+ </div>
+ <div class="card">
+  <div class="icon">⚡</div><h3>Math Sprint</h3>
+  <p>Solve maths questions.</p>
+  <button onclick="startGame('math')">PLAY</button>
+ </div>
+ <div class="card">
+  <div class="icon">👀</div><h3>Odd One Out</h3>
+  <p>Find the different one.</p>
+  <button onclick="startGame('odd')">PLAY</button>
+ </div>
+</section>
+
+<section class="gamebox" id="gamebox">
+ <h2 id="gameTitle">Game</h2>
+ <label for="level">Difficulty:</label>
+ <select id="level" onchange="startRound()">
+  <option value="easy">Easy</option>
+  <option value="medium">Medium</option>
+ </select>
+ <p id="question"></p>
+ <div id="options"></div>
+ <p id="feedback" aria-live="polite"></p>
+ <button onclick="startRound()">NEXT ROUND ↻</button>
+ <button onclick="closeGame()">CLOSE</button>
+</section>
+
+<h2>🏆 Your Points Wallet</h2>
+<div class="card">
+ <h3><span id="wallet">0</span> Demo Points</h3>
+ <p>Collect points by playing games. Points are for fun and in-platform progress only.</p>
+</div>
+
+<div class="notice">
+<strong>PLAYNEX DEMO NOTICE</strong><br>
+PLAYNEX is a free-to-play gaming prototype. It does not accept deposits, wagers or cash withdrawals. Points have no cash value and cannot be exchanged for money.
+</div>
 </main>
-<footer>Created & Developed by <strong style="color:#b7ff00">Paras Nepta</strong><br>© 2026 PLAYNEX · Play More. Level Up.</footer>
+
+<footer>
+Credit by <strong style="color:#b7ff00">Paras Nepta</strong><br>
+© 2026 PLAYNEX · Play More. Level Up.
+</footer>
+
 <script>
-let points=Number(localStorage.getItem('playnex_points')||0);
-function render(){document.getElementById('points').textContent=points}
-function startQuiz(){document.getElementById('quiz').style.display='block';document.getElementById('quiz').scrollIntoView({behavior:'smooth'})}
-function answer(correct){const f=document.getElementById('feedback');if(correct){points+=10;localStorage.setItem('playnex_points',points);render();f.textContent='Correct! +10 demo points added.'}else{f.textContent='Not quite. Try again!'}}
+let points = Number(localStorage.getItem("playnex_points") || 0);
+let currentGame = "";
+let answered = false;
+let memoryAnswer = "";
+let memoryTimer = null;
+
+const $ = id => document.getElementById(id);
+
+function render(){
+ $("points").textContent=points;
+ $("total").textContent=points;
+ $("wallet").textContent=points;
+}
 render();
+
+const quizzes={
+ easy:[
+  ["Which planet is called the Red Planet?",["Earth","Mars","Venus"],1],
+  ["How many days are in a week?",["5","7","10"],1],
+  ["Which animal is known as the King of the Jungle?",["Lion","Tiger","Elephant"],0],
+  ["What is the capital of India?",["Mumbai","Delhi","Jaipur"],1],
+  ["How many colours are in a rainbow?",["5","7","9"],1]
+ ],
+ medium:[
+  ["Which is the largest ocean?",["Atlantic","Indian","Pacific"],2],
+  ["Which gas do plants absorb?",["Oxygen","Carbon dioxide","Hydrogen"],1],
+  ["What is the square root of 144?",["10","12","14"],1],
+  ["Which planet has rings?",["Saturn","Mercury","Earth"],0],
+  ["What is the chemical symbol for gold?",["Ag","Au","Go"],1]
+ ]
+};
+
+const words={
+ easy:[["ELPPA","APPLE"],["NAMGO","MANGO"],["RAEHT","HEART"],["NOMOL","LEMON"]],
+ medium:[["RTAES","STARE"],["NAROGE","ORANGE"],["NTAEPL","PLANET"],["RTAEHW","WEALTH"]]
+};
+
+function startGame(game){
+ currentGame=game;
+ $("gamebox").style.display="block";
+ $("gamebox").scrollIntoView({behavior:"smooth"});
+ startRound();
+}
+
+function closeGame(){
+ clearTimeout(memoryTimer);
+ $("gamebox").style.display="none";
+}
+
+function startRound(){
+ clearTimeout(memoryTimer);
+ answered=false;
+ $("feedback").textContent="";
+ $("options").innerHTML="";
+ const level=$("level").value;
+ const easy=level==="easy";
+ const q=$("question");
+ const opt=$("options");
+
+ const titles={
+ quiz:"🧠 Quiz Arena",memory:"🧩 Memory Match",
+ number:"🔢 Number Ninja",word:"🔤 Word Scramble",
+ math:"⚡ Math Sprint",odd:"👀 Odd One Out"
+ };
+ $("gameTitle").textContent=titles[currentGame];
+
+ function choices(arr,correct){
+  arr.forEach((v,i)=>{
+   let b=document.createElement("button");
+   b.textContent=v;
+   b.onclick=()=>check(i===correct);
+   opt.appendChild(b);
+  });
+ }
+
+ if(currentGame==="quiz"){
+  let list=quizzes[level];
+  let item=list[Math.floor(Math.random()*list.length)];
+  q.textContent=item[0];
+  choices(item[1],item[2]);
+ }
+
+ if(currentGame==="memory"){
+  let n=easy?3:5;
+  let seq=Array.from({length:n},()=>Math.floor(Math.random()*9)+1);
+  memoryAnswer=seq.join("");
+  q.textContent="Remember this number: "+memoryAnswer;
+  memoryTimer=setTimeout(()=>{
+   if(!answered){
+    q.textContent="Enter the number you saw:";
+    let input=document.createElement("input");
+    input.id="memoryInput";
+    input.type="number";
+    input.placeholder="Your answer";
+    input.style.padding="12px";
+    input.style.width="100%";
+    opt.appendChild(input);
+    let b=document.createElement("button");
+    b.textContent="SUBMIT";
+    b.onclick=()=>check($("memoryInput").value===memoryAnswer);
+    opt.appendChild(b);
+   }
+  },easy?2500:3500);
+ }
+
+ if(currentGame==="number"){
+  let start=Math.floor(Math.random()*10)+1;
+  let step=easy?2:3;
+  let seq=[start,start+step,start+step*2,start+step*3];
+  let answer=seq.pop();
+  q.textContent="Find the missing number: "+seq.join(", ")+", ?";
+  let arr=[answer,answer+1,answer+step,answer-1].sort(()=>Math.random()-.5);
+  choices(arr,arr.indexOf(answer));
+ }
+
+ if(currentGame==="word"){
+  let list=words[level];
+  let item=list[Math.floor(Math.random()*list.length)];
+  q.textContent="Unscramble this word: "+item[0];
+  let input=document.createElement("input");
+  input.id="wordInput";
+  input.placeholder="Type your answer";
+  input.style.padding="12px";
+  input.style.width="100%";
+  opt.appendChild(input);
+  let b=document.createElement("button");
+  b.textContent="SUBMIT";
+  b.onclick=()=>check($("wordInput").value.trim().toUpperCase()===item[1]);
+  opt.appendChild(b);
+ }
+
+ if(currentGame==="math"){
+  let a=Math.floor(Math.random()*(easy?10:30))+1;
+  let b=Math.floor(Math.random()*(easy?10:20))+1;
+  let answer=a+b;
+  q.textContent="Solve: "+a+" + "+b+" = ?";
+  let arr=[answer,answer+2,answer-1,answer+3].sort(()=>Math.random()-.5);
+  choices(arr,arr.indexOf(answer));
+ }
+
+ if(currentGame==="odd"){
+  let sets=[
+   ["🍎","🍎","🍎","🍌"],
+   ["🚗","🚗","🚲","🚗"],
+   ["🐶","🐱","🐶","🐶"],
+   ["⭐","⭐","🌙","⭐"]
+  ];
+  let set=sets[Math.floor(Math.random()*sets.length)];
+  let different=set.findIndex(x=>x!==set[0]);
+  q.textContent="Find the different one:";
+  choices(set,different);
+ }
+}
+
+function check(correct){
+ if(answered)return;
+ answered=true;
+ if(correct){
+  let earned=$("level").value==="easy"?10:20;
+  points+=earned;
+  localStorage.setItem("playnex_points",points);
+  render();
+  $("feedback").textContent="Correct! +"+earned+" demo points 🎉";
+  $("feedback").style.color="#b7ff00";
+ }else{
+  $("feedback").textContent="Not quite! Try the next round.";
+  $("feedback").style.color="#ff8585";
+ }
+}
+
 </script>
 </body>
-</html>
+ </html>
