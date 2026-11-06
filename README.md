@@ -1,2 +1,0 @@
-# PLAYNEX
-Gamming_platform_by_paras_nepta
