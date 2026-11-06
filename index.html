@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLAYNEX — Play More. Level Up.</title>
+<style>
+:root{--bg:#070909;--panel:#111716;--line:#26312b;--lime:#b7ff00;--muted:#aab4ad;--white:#f5f8f5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 0%,#172414 0,transparent 35%),var(--bg);color:var(--white);font:15px Arial,sans-serif}
+header{position:sticky;top:0;background:#080c0bea;border-bottom:1px solid var(--line);padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;z-index:2}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo span{color:var(--lime)}.tag{font-size:10px;color:var(--muted);letter-spacing:2px}
+nav{display:flex;gap:18px;flex-wrap:wrap}nav a{color:#e8eee9;text-decoration:none;font-size:13px}nav a:hover{color:var(--lime)}
+button{border:0;border-radius:8px;padding:11px 16px;font-weight:800;cursor:pointer;background:var(--lime);color:#101500}
+main{max-width:1150px;margin:auto;padding:25px 4% 50px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center;padding:45px 0}
+h1{font-size:clamp(38px,7vw,66px);line-height:.98;margin:0 0 18px}h1 span{color:var(--lime)}
+p{color:var(--muted);line-height:1.6}.hero-art{min-height:220px;border:1px solid #384c24;border-radius:20px;background:linear-gradient(135deg,#182411,#080d0b);display:grid;place-items:center;font-size:100px;box-shadow:0 0 45px #aaff0018}
+.stats,.features,.games{display:grid;gap:12px}.stats{grid-template-columns:repeat(3,1fr);margin:8px 0 30px}.stat,.feature,.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:17px}
+.stat strong{display:block;color:var(--lime);font-size:25px}.stat small{color:var(--muted)}
+h2{margin:30px 0 14px}.features{grid-template-columns:repeat(3,1fr)}.feature b{color:var(--lime)}
+.games{grid-template-columns:repeat(3,1fr)}.card{padding:0;overflow:hidden}.thumb{height:105px;display:grid;place-items:center;font-size:48px;background:linear-gradient(135deg,#253d1b,#18202a)}.cardbody{padding:14px}.card h3{margin:0 0 6px}.card p{font-size:13px;margin:0 0 12px}.card button{width:100%}
+.notice{border:1px solid #516d1c;background:#141d0d;border-radius:12px;padding:14px;color:#dce9c9;margin-top:25px;font-size:13px}
+footer{border-top:1px solid var(--line);padding:22px 5%;text-align:center;color:var(--muted);font-size:12px}
+#quiz{display:none;margin-top:15px;background:#0d1410;border:1px solid #526c1d;border-radius:12px;padding:18px}
+#quiz button{margin:6px 6px 0 0}
+@media(max-width:700px){header{align-items:flex-start;flex-direction:column}nav{gap:12px}.hero{grid-template-columns:1fr;padding:28px 0}.hero-art{min-height:150px;font-size:70px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:12px 8px}.stat strong{font-size:20px}.features,.games{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.features,.games{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+ <div><div class="logo">🎮 PLAY<span>NEX</span></div><div class="tag">PLAY MORE. LEVEL UP. &nbsp; | &nbsp; FOUNDED BY PARAS NEPTA</div></div>
+ <nav><a href="#home">Home</a><a href="#games">Games</a><a href="#challenges">Challenges</a><a href="#rewards">Rewards</a></nav>
+</header>
+<main id="home">
+ <section class="hero">
+  <div><h1>PLAY GAMES.<br><span>EARN POINTS.</span></h1><p>Play fun mini-games, complete daily challenges and collect points. This demo uses non-cash points only.</p><button onclick="document.querySelector('#games').scrollIntoView({behavior:'smooth'})">PLAY NOW →</button></div>
+  <div class="hero-art">🎮</div>
+ </section>
+ <section class="stats">
+  <div class="stat"><strong id="points">0</strong><small>Your points</small></div>
+  <div class="stat"><strong>03</strong><small>Demo games</small></div>
+  <div class="stat"><strong>01</strong><small>Daily challenge</small></div>
+ </section>
+ <h2>Why PLAYNEX?</h2>
+ <section class="features">
+  <div class="feature">🎯 <b>Play games</b><p>Quick, casual games.</p></div>
+  <div class="feature">🏅 <b>Collect points</b><p>Earn demo points by playing.</p></div>
+  <div class="feature">📅 <b>Daily tasks</b><p>Try a new challenge.</p></div>
+ </section>
+ <h2 id="games">Popular games</h2>
+ <section class="games">
+  <article class="card"><div class="thumb">🧠</div><div class="cardbody"><h3>Quiz Arena</h3><p>Answer a quick question.</p><button onclick="startQuiz()">PLAY</button></div></article>
+  <article class="card"><div class="thumb">🧩</div><div class="cardbody"><h3>Memory Match</h3><p>Coming soon to the demo.</p><button onclick="alert('Memory Match is coming soon!')">COMING SOON</button></div></article>
+  <article class="card"><div class="thumb">🏹</div><div class="cardbody"><h3>Target Master</h3><p>Coming soon to the demo.</p><button onclick="alert('Target Master is coming soon!')">COMING SOON</button></div></article>
+ </section>
+ <section id="quiz">
+  <h2 style="margin-top:0">Quiz Arena</h2><p id="question">Which planet is known as the Red Planet?</p>
+  <button onclick="answer(false)">Venus</button><button onclick="answer(true)">Mars</button><button onclick="answer(false)">Jupiter</button>
+  <p id="feedback" aria-live="polite"></p>
+ </section>
+ <h2 id="challenges">Daily challenge</h2>
+ <div class="feature">Complete one quiz today to collect <b>+10 demo points</b>.</div>
+ <h2 id="rewards">Rewards</h2>
+ <div class="feature"><b>Points wallet</b><p>Your points are for in-platform progress in this prototype. They have no cash value and cannot be deposited, withdrawn or exchanged for money.</p></div>
+ <div class="notice">Prototype notice: PLAYNEX is a demo gaming website. It does not accept deposits, wagers or cash withdrawals. Add real accounts, security and any commercial features only after legal and technical review.</div>
+</main>
+<footer>Created & Developed by <strong style="color:#b7ff00">Paras Nepta</strong><br>© 2026 PLAYNEX · Play More. Level Up.</footer>
+<script>
+let points=Number(localStorage.getItem('playnex_points')||0);
+function render(){document.getElementById('points').textContent=points}
+function startQuiz(){document.getElementById('quiz').style.display='block';document.getElementById('quiz').scrollIntoView({behavior:'smooth'})}
+function answer(correct){const f=document.getElementById('feedback');if(correct){points+=10;localStorage.setItem('playnex_points',points);render();f.textContent='Correct! +10 demo points added.'}else{f.textContent='Not quite. Try again!'}}
+render();
+</script>
+</body>
+</html>
