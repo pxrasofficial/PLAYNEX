@@ -1,0 +1,20 @@
+{
+  "id": "/PLAYNEX/",
+  "name": "PLAYNEX - Play More. Level Up.",
+  "short_name": "PLAYNEX",
+  "description": "Play fun mini games and level up!",
+  "start_url": "/PLAYNEX/",
+  "scope": "/PLAYNEX/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070909",
+  "theme_color": "#070909",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
